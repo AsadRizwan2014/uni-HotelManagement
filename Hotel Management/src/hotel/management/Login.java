@@ -5,6 +5,11 @@
  */
 package hotel.management;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Zeeshan
@@ -50,6 +55,12 @@ public class Login extends javax.swing.JFrame {
         kButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 kButton1ActionPerformed(evt);
+            }
+        });
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
             }
         });
 
@@ -130,9 +141,43 @@ public class Login extends javax.swing.JFrame {
 
     private void kButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton1ActionPerformed
         // TODO add your handling code here:
-        Panel p =new Panel();
-        p.setVisible(true);
+         PreparedStatement ps;
+        ResultSet rs;
+        String uname=jTextField1.getText();
+        String upass=String.valueOf(jPasswordField1.getPassword());
+        String query = "SELECT * FROM `login` WHERE `username` =? AND `userpass` =?";
+        
+        try {
+            ps = MyConnection.getConnection().prepareCall(query);
+            ps.setString(1, uname);
+            ps.setString(2, upass);
+            rs = ps.executeQuery();
+            
+            if(rs.next()){
+                
+                Panel p =new Panel();
+                p.setVisible(true);
+                p.pack();
+                p.setLocationRelativeTo(null);
+                this.dispose();
+            }else if("manager"==uname){
+                  if("hotel".equalsIgnoreCase(uname)){
+                  new AdminPanel().show();
+                  this.dispose();
+                  }}
+            
+            else{
+                    JOptionPane.showMessageDialog(null, "Incorrect Username Or Password", "Login Failed", 2);
+                }
+             } catch (SQLException ex) {
+            
+        }   
+        
     }//GEN-LAST:event_kButton1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments

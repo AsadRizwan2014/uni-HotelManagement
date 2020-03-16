@@ -9,7 +9,10 @@
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
     <jar href="lib\AbsoluteLayout.jar" size="2903" download="eager" />
+    <jar href="lib\DateChooser.jar" size="514658" download="eager" />
     <jar href="lib\KControls.jar" size="17683" download="eager" />
+    <jar href="lib\jcalendar-1.1.4.jar" size="68310" download="eager" />
+    <jar href="lib\mysql-connector-java-8.0.19.jar" size="2356711" download="eager" />
   </resources>
   <application-desc main-class="hotel.management.LoadingClass"  name="Hotel Management" >
   </application-desc>

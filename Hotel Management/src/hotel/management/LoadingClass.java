@@ -16,7 +16,7 @@ public class LoadingClass {
         ld.setVisible(true);
         try{
         for(int i=0;i<=100; i++){
-            Thread.sleep(20);
+            Thread.sleep(10);
             ld.jLabel2.setText(Integer.toString(i));
             ld.jProgressBar1.setValue(i);
             if(i==100){
